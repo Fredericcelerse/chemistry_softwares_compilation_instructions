@@ -1,0 +1,15 @@
+Instructions for compiling the LAMMPS software:
+
+$ wget https://github.com/lammps/lammps/archive/stable_23Jun2022_update3.tar.gz
+$ tar xf stable_23Jun2022_update3.tar.gz
+$ cd lammps-stable_23Jun2022_update3/
+$ LAMMPS_ROOT=`pwd`
+$ module load intel intel-oneapi-mpi
+$ cd src/
+$ make yes-kspace
+$ make yes-extra-fix
+NOTE: It is important in this version to check the version of LAMMPS, because it can lead to crash your compilation. The check can be done by typing: "vi Makefile.package" => then check if you have well -DLAMMPS_VERSION_NUMBER=20220623
+$ make mpi -j 16
+
+=> The lmp_mpi executable is finally generated!
+=> To launch it, you can either use the full path or place it in a bin directory and then adjust the bashrc file.
