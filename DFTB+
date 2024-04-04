@@ -1,0 +1,21 @@
+Instructions for compiling DFTB+ (TESTED ON 04/04/2024 on the EPFL SCITAS cluster)
+
+$ git clone --branch release https://github.com/dftbplus/dftbplus.git 
+$ module load gcc openblas fftw intel-mkl cmake
+$ cd dftbplus/
+
+NOTE: to enable modules such as D3 corrections or sockets, you can use the follwoing lines:
+$ sed -i 's/WITH_SDFTD3 "Whether the s-dftd3 library should be included" FALSE/WITH_SDFTD3 "Whether the s-dftd3 library should be included" TRUE/g' config.cmake
+$ sed -i 's/WITH_SOCKETS "Whether socket communication should be allowed for" FALSE/WITH_SOCKETS "Whether socket communication should be allowed for" TRUE/g' config.cmake
+=> You can also directly change FALSE to TRUE in the config.cmake file by yourself !
+
+$ FC=gfortran CC=gcc cmake -DCMAKE_INSTALL_PREFIX=opt/dftb+ -B _build
+$ cmake --build _build -- -j 16
+$ cmake --install _build
+
+=> The dftb+ executable will be created in the following direction: opt/dftb+/bin
+=> The best way to branch then your dftb+ executable is to link it with your bashrc:
+$ PATH=$PATH:/The/Path/where/it/is
+$ export PATH
+
+NOTE: for python usage, you can also manually change the directory of your dftb+ executable within the ase calculator within your conda environment: "vi anaconda3/envs/name_of_your_env/lib/pythonXXX/site-packages/ase/calculators/dftb.py", then Line 20: command = ‘dftb+ > PREFIX.out’
