@@ -1,0 +1,38 @@
+Instructions for compiling the PLUMED software
+
+# 1/ Downloading PLUMED from GitHub
+$ git clone https://github.com/plumed/plumed2.git --branch v2.8 
+$ cd plumed2/
+
+# 2/ Compiling PLUMED
+# 2.1 MPI compilation
+First, depending on your computational environment, you need to load the approrpiate libraries to enable PLUMED to see your MPI paths during the compilation. In my case and on the cluster I tested the compilation (04/04/2024), here are the following modules I loaded:
+$ module load intel intel-oneapi-mpi intel-oneapi-mkl
+Then, we prepare the config file:
+$ ./configure --prefix=/scratch/celerse/plumed2/ --enable-mpi CC=mpiicc FC=mpiifort CXX=mpiicpc
+NOTE: if you want a full compilation of the software with all the modules, you can use this line (and adjust the corresponded paths):
+$ module load intel intel-oneapi-mpi intel-oneapi-mkl python gsl fftw
+$ ./configure \
+--prefix=/path/to/my/plumed/2.8.2/intel-2021.0.6 \
+--enable-mpi \
+--enable-rpath \
+--enable-modules=all \
+CC=mpiicc \
+FC=mpiifort \
+CXX=mpiicpc \
+LDFLAGS="-L${MKLROOT}/lib/intel64 -lpthread -lm -ldl -L${FFTW_ROOT}/lib -lfftw3 -L${GSL_ROOT}/lib -lgsl" \
+CFLAGS="-qmkl=parallel -I${FFTW_ROOT}/include -I${GSL_ROOT}/include" \
+CXXFLAGS="-qmkl=parallel -I${FFTW_ROOT}/include -I${GSL_ROOT}/include" \
+FCFLAGS="-qmkl=parallel -I${FFTW_ROOT}/include -I${GSL_ROOT}/include"
+
+# 2.2 NO MPI compilation
+Compiling PLUMED without the MPI can be done by just typing this:
+$ ./configure --prefix=/scratch/celerse/plumed2/ --enable-modules=all
+
+# 2.3 Finish the compilation
+$ make -j 16
+$ make install
+
+=> You should be able to find three folders in the directory specified in the --prefix variable: bin, include, lib
+For all the computations launched with this module, be sure that you load the approriate library by typing in your terminal:
+$ export PLUMED_KERNEL=/scratch/celerse/plumed2/lib/libplumedKernel.so
