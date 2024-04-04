@@ -1,0 +1,25 @@
+Instructions for compiling the DeepMD software by yourself:
+
+$ conda create -n md-deepmd-cpu python==3.9
+$ conda activate md-deepmd-cpu
+$ conda install -c anaconda cmake
+$ conda install -c anaconda mkl
+$ git clone --recursive https://github.com/deepmodeling/deepmd-kit.git deepmd-kit
+$ module load intel intel-oneapi-mpi
+$ cd deepmd-kit && deepmd_source_dir=`pwd`
+$ pip install tensorflow-cpu
+NOTE: if GPU then type "pip install tensorflow" only
+$ tensorflow_root=/home/celerse/anaconda3/envs/md-deepmd-cpu/lib/python3.9/site-packages/tensorflow/
+$ pip install .
+$ cd source/ && mkdir build && cd build/
+$ deepmd_root=`pwd`
+$ cmake -DTENSORFLOW_ROOT=$tensorflow_root -DCMAKE_INSTALL_PREFIX=$deepmd_root -DCMAKE_INSTALL_PREFIX=$deepmd_root/source/build/ -DUSE_TF_PYTHON_LIBS=TRUE .. 
+NOTE: if GPU then type:
+$ cmake -DTENSORFLOW_ROOT=$tensorflow_root -DCMAKE_INSTALL_PREFIX=$deepmd_root -DUSE_CUDA_TOOLKIT=TRUE -DCUDA_TOOLKIT_ROOT_DIR=$CUDA_HOME -DCMAKE_INSTALL_PREFIX=$deepmd_root/source/build/ -DUSE_TF_PYTHON_LIBS=TRUE ..
+
+$ make -j 16
+$ make install
+$ ln -s $tensorflow/libtensorflow_cc.so.2 $tensorflow/libtensorflow_cc.so
+$ ln -s $tensorflow/libtensorflow_framework.so.2 $tensorflow/libtensorflow_framework.so
+
+
