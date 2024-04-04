@@ -1,19 +1,19 @@
-Instructions for compiling the PLUMED software
+Instructions for compiling the PLUMED software (TESTED ON 04/04/2024 on the EPFL SCITAS cluster)
 
 # 1/ Downloading PLUMED from GitHub
-$ git clone https://github.com/plumed/plumed2.git --branch v2.8 
-$ cd plumed2/
+$ git clone https://github.com/plumed/plumed2.git --branch v2.8 plumed-v2.8
+$ cd plumed-v2.8/
 
 # 2/ Compiling PLUMED
 # 2.1 MPI compilation
 First, depending on your computational environment, you need to load the approrpiate libraries to enable PLUMED to see your MPI paths during the compilation. In my case and on the cluster I tested the compilation (04/04/2024), here are the following modules I loaded:
 $ module load intel intel-oneapi-mpi intel-oneapi-mkl
 Then, we prepare the config file:
-$ ./configure --prefix=/scratch/celerse/plumed2/ --enable-mpi CC=mpiicc FC=mpiifort CXX=mpiicpc
+$ ./configure --prefix=/scratch/celerse/plumed-v2.8/ --enable-mpi CC=mpiicc FC=mpiifort CXX=mpiicpc
 NOTE: if you want a full compilation of the software with all the modules, you can use this line (and adjust the corresponded paths):
 $ module load intel intel-oneapi-mpi intel-oneapi-mkl python gsl fftw
 $ ./configure \
---prefix=/path/to/my/plumed/2.8.2/intel-2021.0.6 \
+--prefix=/path/to/my/plumed/2.8/intel-2021.0.6 \
 --enable-mpi \
 --enable-rpath \
 --enable-modules=all \
