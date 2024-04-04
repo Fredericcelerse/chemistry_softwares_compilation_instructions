@@ -1,0 +1,22 @@
+Instructions for compiling the LAMMPS software: (TESTED ON 04/04/2024 on EPFL SCITAS cluster)
+
+$ wget https://github.com/lammps/lammps/archive/stable_23Jun2022_update3.tar.gz
+$ tar xf stable_23Jun2022_update3.tar.gz
+$ cd lammps-stable_23Jun2022_update3/
+$ LAMMPS_ROOT=`pwd`
+$ module load nvhpc cuda
+$ cd lammps/lib/gpu
+$ vi Makefile.mpi
+# In Makefile.mpi, put the value of the variable $CUDA_HOME you obtain in your terminal at the line CUDA_HOME = 
+$ make -f Makefile.mpi -j 8
+$ vi Makefile.lammps.standard
+# In Makefile.lammps.standard, put the value of the variable $CUDA_HOME you obtain in your terminal at the line CUDA_HOME=
+$ cd ../../src/
+$ make yes-kspace
+$ make yes-gpu
+$ make yes-extra-fix
+NOTE: It is important in this version to check the version of LAMMPS, because it can lead to crash your compilation. The check can be done by typing: "vi Makefile.package" => then check if you have well -DLAMMPS_VERSION_NUMBER=20220623
+$ make gpu -j 16
+
+=> The lmp_gpu executable is finally generated!
+=> To launch it, you can either use the full path or place it in a bin directory and then adjust the bashrc file.
