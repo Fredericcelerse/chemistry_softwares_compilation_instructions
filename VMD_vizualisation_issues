@@ -1,0 +1,21 @@
+If you have VMD and observed issue in opening it, then try these two manipulations in order to solve this issue:
+
+# Solution 1 (tested on Mac):
+1/ Install xquartz version 2.7.11
+2/ Switch off and switch on the computer, and keep sure that xquartz is well switched on
+3/ Type these instructions in the Mac terminal:
+$ brew install xauth
+$ brew install –cask xquartz
+$ defaults write org.xquartz.X11 enable_iglx -bool true
+
+# Solution 2:
+Type these commands in your Mac terminal:
+$ ssh-keygen -t rsa
+$ cd .ssh/
+$ touch config
+$ echo "Host * \
+	ForwardAgent yes \
+	ForwardX11 yes \
+	XAuthLocation /opt/X11/bin/xauth \
+" >> config
+NOTE: The path for XAuthLocation can be checked using the command: "which xauth"
