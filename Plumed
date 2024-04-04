@@ -13,7 +13,7 @@ $ ./configure --prefix=/scratch/celerse/plumed-v2.8/ --enable-mpi CC=mpiicc FC=m
 NOTE: if you want a full compilation of the software with all the modules, you can use this line (and adjust the corresponded paths):
 $ module load intel intel-oneapi-mpi intel-oneapi-mkl python gsl fftw
 $ ./configure \
---prefix=/path/to/my/plumed/2.8/intel-2021.0.6 \
+--prefix=/scratch/celerse/plumed-v2.8 \
 --enable-mpi \
 --enable-rpath \
 --enable-modules=all \
@@ -27,12 +27,12 @@ FCFLAGS="-qmkl=parallel -I${FFTW_ROOT}/include -I${GSL_ROOT}/include"
 
 # 2.2 NO MPI compilation
 Compiling PLUMED without the MPI can be done by just typing this:
-$ ./configure --prefix=/scratch/celerse/plumed2/ --enable-modules=all
+$ ./configure --prefix=/scratch/celerse/plumed-v2.8/ --enable-modules=all
 
 # 2.3 Finish the compilation
-$ make -j 16
+$ make -j 4
 $ make install
 
 => You should be able to find three folders in the directory specified in the --prefix variable: bin, include, lib
 For all the computations launched with this module, be sure that you load the approriate library by typing in your terminal:
-$ export PLUMED_KERNEL=/scratch/celerse/plumed2/lib/libplumedKernel.so
+$ export PLUMED_KERNEL=/scratch/celerse/plumed-v2.8/lib/libplumedKernel.so
