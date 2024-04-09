@@ -3,8 +3,9 @@ Instructions for compiling the DeepMD software by yourself on a CPU platform: (T
 $ conda create -n deepmd-cpu python==3.9
 $ conda activate deepmd-cpu
 $ conda install -c anaconda cmake
-$ conda install -c conda-forge gcc=8.5.0
-$ conda install -c conda-forge gxx=8.5.0
+$ #conda install -c conda-forge gcc=8.5.0
+$ #conda install -c conda-forge gxx=8.5.0
+$ module load gcc/8.4.0
 $ git clone https://github.com/deepmodeling/deepmd-kit.git deepmd-kit
 $ cd deepmd-kit && deepmd_source_dir=`pwd`
 $ pip install tensorflow-cpu==2.9.0
@@ -16,7 +17,5 @@ $ cmake -DTENSORFLOW_ROOT=$tensorflow_root -DCMAKE_INSTALL_PREFIX=$deepmd_root -
 
 $ make -j4
 $ make install
-$ ln -s $tensorflow/libtensorflow_cc.so.2 $tensorflow/libtensorflow_cc.so
-$ ln -s $tensorflow/libtensorflow_framework.so.2 $tensorflow/libtensorflow_framework.so
 
 
