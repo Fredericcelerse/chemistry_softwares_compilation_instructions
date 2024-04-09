@@ -14,7 +14,7 @@ Importantly, if you use this way to install deepmd on your linux environment, yo
 
 |CPU|GPU|
 |---|---|
-||module load gcc/9.3.0-cuda cuda/11.0.2|
+|module load intel/2021.6.0 intel-oneapi-mpi/2021.6.0 intel-oneapi-mkl|module load gcc/9.3.0-cuda cuda/11.0.2|
 ||export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/lib64|
 ||export CUDA_VISIBLE_DEVICES="0"|
 
