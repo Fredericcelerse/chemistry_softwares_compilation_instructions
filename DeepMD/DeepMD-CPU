@@ -8,14 +8,11 @@ $ conda install -c conda-forge gxx=8.5.0
 $ git clone https://github.com/deepmodeling/deepmd-kit.git deepmd-kit
 $ cd deepmd-kit && deepmd_source_dir=`pwd`
 $ pip install tensorflow-cpu=2.9.0
-NOTE: if GPU then type "pip install tensorflow=2.9.0" only
 $ tensorflow_root=/home/celerse/anaconda3/envs/md-deepmd-cpu/lib/python3.9/site-packages/tensorflow/
 $ pip install .
 $ cd source/ && mkdir build && cd build/
 $ deepmd_root=`pwd`
 $ cmake -DTENSORFLOW_ROOT=$tensorflow_root -DCMAKE_INSTALL_PREFIX=$deepmd_root -DCMAKE_INSTALL_PREFIX=$deepmd_root/source/build/ -DUSE_TF_PYTHON_LIBS=TRUE .. 
-NOTE: if GPU then type:
-$ cmake -DTENSORFLOW_ROOT=$tensorflow_root -DCMAKE_INSTALL_PREFIX=$deepmd_root -DUSE_CUDA_TOOLKIT=TRUE -DCUDA_TOOLKIT_ROOT_DIR=$CUDA_HOME -DCMAKE_INSTALL_PREFIX=$deepmd_root/source/build/ -DUSE_TF_PYTHON_LIBS=TRUE ..
 
 $ make -j4
 $ make install
