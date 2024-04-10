@@ -37,11 +37,13 @@ For each of the softwares and libraries we will talk about here, we listed the m
 
 | Software | Module | Specific version |
 |---|---|---|
-|Plumed|Intel / IntelMPI|NO|
-|DFTB+|Intel||
-|LAMMPS|||
-|DeepMD|||
-|QML|||
+|Plumed|Intel / IntelMPI / IntelMKL|NO|
+|DFTB+|gcc / openblas / fftw / intelMKL / cmake|NO|
+|LAMMPS CPU|Intel / IntelMPI|NO|
+|LAMMPS GPU|nvhpc / cuda|NO|
+|DeepMD CPU|Intel / IntelMPI|NO|
+|DeepMD GPU|cuda / cudnn / cudart / gcc / mvapich2|gcc-8.4.0|
+|QML|Intel or gcc|NO|
 
 > [!CAUTION]
 > This list is not exhaustive and only constitute a benchmark made during the writting of this documentation. It could change and evolve with the time !
