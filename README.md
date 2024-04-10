@@ -19,6 +19,15 @@ In our case, we have a Linux x86_64 machine, we will thus proceed like that:
    bash Anaconda3-2023.09-0-Linux-x86_64.sh
    ```
 
+Then, each time you will need to activate a specific conda environment, you should tap:
+```
+conda activate name_of_your_env
+```
+and to exit the conda environment:
+```
+conda deactivate
+```
+
 ### Modules
 
 ## Softwares and libraries
