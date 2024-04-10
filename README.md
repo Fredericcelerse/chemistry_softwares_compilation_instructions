@@ -51,11 +51,26 @@ For each of the softwares and libraries we will talk about here, we listed the m
 ## Softwares and libraries
 
 ### Plumed
+Link for Plumed: https://github.com/plumed/plumed2
+
+Link for documentation: https://www.plumed.org/doc-v2.8/user-doc/html/index.html
 
 ### DFTB+
+Link for DFTB+: https://github.com/dftbplus/dftbplus
+
+Link for documentation: https://dftbplus.org/index.html
 
 ### LAMMPS
+Link for LAMMPS: https://github.com/lammps/lammps
+
+Link for documentation: https://www.lammps.org/#gsc.tab=0
 
 ### DeepMD
+Link for DeepMD: https://github.com/deepmodeling/deepmd-kit
+
+Link for documentation: https://docs.deepmodeling.com/projects/deepmd/en/r2/
 
 ### QML
+Link for QML: https://github.com/qmlcode/qml
+
+Link for documentation: https://www.qmlcode.org/
