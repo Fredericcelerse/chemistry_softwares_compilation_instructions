@@ -33,6 +33,19 @@ conda deactivate
 
 ### Modules
 
+For each of the softwares and libraries we will talk about here, we listed the modules (with specific or not) versions you need to have prior to start the installation
+
+| Software | Module | Specific version |
+|---|---|---|
+|Plumed|Intel / IntelMPI|NO|
+|DFTB+|Intel||
+|LAMMPS|||
+|DeepMD|||
+|QML|||
+
+> [!CAUTION]
+> This list is not exhaustive and only constitute a benchmark made during the writting of this documentation. It could change and evolve with the time !
+
 ## Softwares and libraries
 
 ### Plumed
