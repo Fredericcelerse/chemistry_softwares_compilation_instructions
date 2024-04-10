@@ -28,6 +28,8 @@ and to exit the conda environment:
 conda deactivate
 ```
 
+[!NOTE] Instead of anaconda you can also do the same with miniconda: https://docs.anaconda.com/free/miniconda/index.html
+
 ### Modules
 
 ## Softwares and libraries
