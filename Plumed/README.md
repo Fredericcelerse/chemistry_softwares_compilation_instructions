@@ -1,6 +1,6 @@
 ### Plumed compilation from scratch
 
-You can install the Plumed software following the instructions contained in the plumed file. 
+You can install the Plumed software following the instructions contained in the Plumed file. 
 
 ### Testing Plumed installation 
 
