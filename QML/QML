@@ -1,0 +1,23 @@
+Instructions for compiling the QML library (TESTED ON 24/04/2024 on the EPFL SCITAS cluster)
+
+# 1/ Downloading QML from GitHub
+$ git clone -b develop https://github.com/qmlcode/qml
+$ cd qml/
+
+# 2/ Create conda environment
+$ conda create -n qml python=3.7.4
+$ conda activate qml
+$ pip install scipy==1.4.1
+$ pip install ase==3.22.0
+$ pip install scikit-learn
+
+# 3/ Load Intel libraries
+$ module load intel
+$ module load intel-oneapi-mkl
+
+# 4/ Installing QML
+$ LDFLAGS="-L${MKLROOT}/lib/intel64" python setup.py build --compiler=intelem --fcompiler=intelem install
+
+# 5/ Test
+$ python 
+$ import qml
