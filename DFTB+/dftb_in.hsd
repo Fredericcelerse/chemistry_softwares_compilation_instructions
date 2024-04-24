@@ -1,0 +1,64 @@
+Geometry = GenFormat {
+    <<< "./system.gen"
+
+}
+
+#DFTB+ model choices
+Hamiltonian = DFTB {
+    HCorrection = H5 {}
+    Dispersion = DftD3 {
+    Damping = ZeroDamping {
+    sr6 = 1.25
+   alpha6 = 29.61
+   }
+   s6 = 1.0
+   s8 = 0.49
+   HHRepulsion = Yes
+   }
+
+    HubbardDerivs = {
+        H  = -0.1857
+        O  = -0.1575
+        C  = -0.1492
+        S = -0.11
+    }
+    MaxAngularMomentum = {
+        H  = "s"
+        O  = "p"
+        C  = "p"
+        S = "d"
+    }
+    Filling = Fermi{
+      Temperature [K] = 300
+   }
+    KPointsAndWeights = SupercellFolding {
+        1   0   0
+        0   1   0
+        0   0   1
+        0.0 0.0 0.0}
+    SCC = Yes
+    SlaterKosterFiles = Type2FileNames{
+        Prefix = ./dftb-3ob-3-1_files/
+        Separator = "-"
+        Suffix = ".skf"
+    }
+    ThirdOrderFull = Yes
+}
+
+Options {
+    # Minimize output during run
+    WriteResultsTag = No
+    WriteDetailedOut = Yes
+}
+
+Analysis = {
+    # Minimize analysis within DFTB+
+    WriteBandOut = No
+    MullikenAnalysis = No
+}
+
+ParserOptions = {
+    # For forward compatibility, specifiy the DFTB+ input version
+    ParserVersion = 5
+        }
+
