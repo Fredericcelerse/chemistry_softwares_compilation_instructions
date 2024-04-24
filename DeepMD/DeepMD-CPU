@@ -1,4 +1,4 @@
-Instructions for compiling the DeepMD software by yourself on a CPU platform: (TESTED ON 05/04/2024 ON EPFL SCITAS CLUSTER)
+Instructions for compiling the DeepMD software by yourself on a CPU platform: (TESTED ON 24/04/2024 ON EPFL SCITAS CLUSTER)
 
 $ conda create -n deepmd-cpu python==3.10.8
 $ conda activate deepmd-cpu
