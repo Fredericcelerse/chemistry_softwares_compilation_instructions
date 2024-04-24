@@ -6,5 +6,8 @@ You can install the DFTB+ software following the instructions contained in the D
 
 To test the dftb= installation, you can launch the following command contained within the test_installation.sh file:
 ```
-TOTO IS TOTO
+export OMP_NUM_THREADS=1
+dftb+ dftb_in.hsd
 ```
+
+
