@@ -1,1 +1,39 @@
+Instructions for installing LAMMPS with DeepMD by yourself on a CPU platform: (TESTED ON XX/XX/2024 ON EPFL SCITAS CLUSTER)
+
+1/ Download DeepMD and LAMMPS and create conda environment
+$ conda create -n lammps-deepmd-cpu python==3.10.8
+$ conda activate lammps-deepmd-cpu
+$ conda install -c anaconda cmake
+$ conda install -c conda-forge gcc=8.5.0
+$ conda install -c conda-forge gxx=8.5.0
+$ conda install -c conda-forge mpi4py mpich
+$ git clone https://github.com/deepmodeling/deepmd-kit.git deepmd-kit
+$ wget https://github.com/lammps/lammps/archive/stable_23Jun2022_update3.tar.gz
+$ tar xf stable_23Jun2022_update3.tar.gz
+$ cd lammps-stable_23Jun2022_update3/
+$ LAMMPS_ROOT=`pwd`
+$ cd ../
+
+2/ Compiling DeepMD
+$ cd deepmd-kit && deepmd_source_dir=`pwd`
+$ pip install tensorflow-cpu==2.8.0
+$ tensorflow_root=/home/celerse/anaconda3/envs/lammps-deepmd-cpu/lib/python3.10/site-packages/tensorflow/
+$ pip install .
+$ cd source/ && mkdir build && cd build/
+$ deepmd_root=`pwd`
+$ pip install protobuf==3.20.*
+$ cmake -DTENSORFLOW_ROOT=$tensorflow_root -DCMAKE_INSTALL_PREFIX=$deepmd_root -DLAMMPS_SOURCE_ROOT=$LAMMPS_ROOT -DCMAKE_INSTALL_PREFIX=$deepmd_root/source/build/ -DUSE_TF_PYTHON_LIBS=TRUE .. 
+$ export LD_LIBRARY_PATH=/home/celerse/anaconda3/envs/lammps-deepmd-cpu/lib/
+$ make -j4
+$ make install
+$ make lammps
+
+3/ Compiling LAMMPS
+$ cp -r USER-DEEPMD/ $LAMMPS_ROOT/src/
+$ cd $LAMMPS_ROOT/src/
+$ make yes-kspace
+$ make yes-extra-fix
+$ chmod 744 USER-DEEPMD/lmp_version.sh
+$ make yes-user-deepmd
+$ make mpi -j 16
 
