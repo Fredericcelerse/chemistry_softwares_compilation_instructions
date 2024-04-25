@@ -42,3 +42,22 @@ $ make mpi -j 16
 
 => lmp_mpi is created !
 
+
+OPTIONAL: If Plumed want to be branched to the LAMMPS+DeepMD interface, follow the protocol:
+$ cd ../../
+$ git clone https://github.com/plumed/plumed2.git --branch v2.8 plumed-v2.8
+$ cd plumed-v2.8/
+$ ./configure --prefix=/scratch/celerse/plumed-v2.8/ --enable-mpi CC=mpicc FC=mpifort CXX=mpic++
+$ make -j 16
+$ make install
+$ PLUMED_ROOT=`pwd`
+$ export PATH=$PATH:/$PLUMED_ROOT/bin
+$ export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$PLUMED_ROOT/lib
+$ export PLUMED_KERNEL=$PLUMED_KERNEL:$PLUMED_ROOT
+$ cd ../lammps-stable_23Jun2022_update3/src/
+$ make lib-plumed args="-p $PLUMED_ROOT"
+$ make yes-plumed
+$ make mpi -j 16
+
+
+=> lmp_mpi can be used with PLUMED now ! (in MPI mode)
