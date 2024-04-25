@@ -35,5 +35,10 @@ $ make yes-kspace
 $ make yes-extra-fix
 $ chmod 744 USER-DEEPMD/lmp_version.sh
 $ make yes-user-deepmd
+$ export LD_LIBRARY_PATH="$LD_LIBRARY_PATH":$tensorflow_root/python/
+$ export LD_LIBRARY_PATH="$LD_LIBRARY_PATH":$tensorflow_root/
 $ make mpi -j 16
+
+
+=> lmp_mpi is created !
 
