@@ -84,6 +84,8 @@ make install
 > Due to conda issues with cuda, you have to change manually several names of cuda libraries:
 > ```
 > cd /home/celerse/anaconda3/envs/lammps-deepmd-gpu/lib
+> ```
+> ```
 > ln -s libcudart.so.12 libcudart.so.11.0
 > ln -s libcublas.so.12 libcublas.so.11
 > ln -s libcublas.so.12 libcublas.so.11.0
