@@ -1,37 +1,39 @@
 Instructions for compiling the PLUMED software (TESTED ON 04/04/2024 on the EPFL SCITAS cluster)
 
 # 1/ Create conda environment 
-$ conda create -n lammps-deepmd-gpu python==3.10.8
-$ conda activate lammps-deepmd-gpu
+$ conda create -n plumed python==3.10.8
+$ conda activate plumed
 $ conda install -c conda-forge cmake=3.26.1 gcc=8.5.0 gxx=8.5.0 mpi4py mpich
+$ export LD_LIBRARY_PATH=/home/celerse/anaconda3/envs/plumed/lib/
 
 # 2/ Downloading PLUMED from GitHub
 $ git clone https://github.com/plumed/plumed2.git --branch v2.8 plumed-v2.8
 $ cd plumed-v2.8/
 
-# 2/ Compiling PLUMED
-# 2.1 MPI compilation
-$ ./configure --prefix=/scratch/celerse/plumed-v2.8/ --enable-mpi CC=mpicc FC=mpifort CXX=mpic++
-NOTE: if you want a full compilation of the software with all the modules, you can use this line (and adjust the corresponded paths):
-$ module load intel intel-oneapi-mpi intel-oneapi-mkl python gsl fftw
-$ ./configure \
---prefix=/scratch/celerse/plumed-v2.8 \
---enable-mpi \
---enable-rpath \
---enable-modules=all \
-CC=mpiicc \
-FC=mpiifort \
-CXX=mpiicpc \
-LDFLAGS="-L${MKLROOT}/lib/intel64 -lpthread -lm -ldl -L${FFTW_ROOT}/lib -lfftw3 -L${GSL_ROOT}/lib -lgsl" \
-CFLAGS="-qmkl=parallel -I${FFTW_ROOT}/include -I${GSL_ROOT}/include" \
-CXXFLAGS="-qmkl=parallel -I${FFTW_ROOT}/include -I${GSL_ROOT}/include" \
-FCFLAGS="-qmkl=parallel -I${FFTW_ROOT}/include -I${GSL_ROOT}/include"
+# 3/ Compiling PLUMED
+  # 3.1 MPI compilation
+  $ ./configure --prefix=/scratch/celerse/plumed-v2.8/ --enable-mpi CC=mpicc FC=mpifort CXX=mpic++
 
-# 2.2 NO MPI compilation
-Compiling PLUMED without the MPI can be done by just typing this:
-$ ./configure --prefix=/scratch/celerse/plumed-v2.8/ --enable-modules=all
+  # 3.2 NO MPI compilation
+  Compiling PLUMED without the MPI can be done by just typing this:
+  $ ./configure --prefix=/scratch/celerse/plumed-v2.8/ --enable-modules=all
 
-# 2.3 Finish the compilation
+  # 3.3 Alternative options using already existed modules on the machine
+  $ module load intel intel-oneapi-mpi intel-oneapi-mkl python gsl fftw
+  $ ./configure \
+  --prefix=/scratch/celerse/plumed-v2.8 \
+  --enable-mpi \
+  --enable-rpath \
+  --enable-modules=all \
+  CC=mpiicc \
+  FC=mpiifort \
+  CXX=mpiicpc \
+  LDFLAGS="-L${MKLROOT}/lib/intel64 -lpthread -lm -ldl -L${FFTW_ROOT}/lib -lfftw3 -L${GSL_ROOT}/lib -lgsl" \
+  CFLAGS="-qmkl=parallel -I${FFTW_ROOT}/include -I${GSL_ROOT}/include" \
+  CXXFLAGS="-qmkl=parallel -I${FFTW_ROOT}/include -I${GSL_ROOT}/include" \
+  FCFLAGS="-qmkl=parallel -I${FFTW_ROOT}/include -I${GSL_ROOT}/include"
+
+# 4 Finish the compilation
 $ make -j 16
 $ make install
 
