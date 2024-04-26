@@ -1,0 +1,71 @@
+Instructions for installing LAMMPS with DeepMD by yourself on a GPU platform: (TESTED ON XX/04/2024 ON EPFL SCITAS CLUSTER)
+
+1/ Download DeepMD and LAMMPS and create conda environment
+$ conda create -n lammps-deepmd-gpu python==3.10.8
+$ conda activate lammps-deepmd-gpu
+$ conda install -c conda-forge cmake=3.26.1
+$ conda install -c conda-forge gcc=8.5.0
+$ conda install -c conda-forge gxx=8.5.0
+$ conda install nvidia/label/cuda-11.6.2::cuda-toolkit
+$ conda install -c conda-forge cudnn=8.9.7.29
+$ conda install defusco::mvapich2
+$ conda install -c nvidia cuda-cudart-dev=11.6.55
+$ git clone https://github.com/deepmodeling/deepmd-kit.git deepmd-kit
+$ wget https://github.com/lammps/lammps/archive/stable_23Jun2022_update3.tar.gz
+$ tar xf stable_23Jun2022_update3.tar.gz
+$ cd lammps-stable_23Jun2022_update3/
+$ LAMMPS_ROOT=`pwd`
+$ cd ../
+
+2/ Compiling DeepMD
+$ cd deepmd-kit && deepmd_source_dir=`pwd`
+$ pip install tensorflow==2.8.0
+$ tensorflow_root=/home/celerse/anaconda3/envs/deepmd-gpu/lib/python3.10/site-packages/tensorflow/
+$ DP_VARIANT=cuda
+$ pip install .
+$ cd source/ && mkdir build && cd build/
+$ deepmd_root=`pwd`
+$ conda env config vars set CUDA_HOME="/home/celerse/anaconda3/envs/lammps-deepmd-gpu/"
+$ conda env config vars set CUDA_ROOT="/home/celerse/anaconda3/envs/lammps-deepmd-gpu/"
+$ conda deactivate
+$ conda activate deepmd-gpu
+$ pip install protobuf==3.20.*
+$ cmake -DTENSORFLOW_ROOT=$tensorflow_root -DCMAKE_INSTALL_PREFIX=$deepmd_root -DLAMMPS_SOURCE_ROOT=$LAMMPS_ROOT -DCMAKE_INSTALL_PREFIX=$deepmd_root/source/build/ -DUSE_TF_PYTHON_LIBS=TRUE .. 
+$ export LD_LIBRARY_PATH=/home/celerse/anaconda3/envs/lammps-deepmd-gpu/lib/
+$ make -j4
+$ make install
+$ make lammps
+
+3/ Compiling LAMMPS
+$ cp -r USER-DEEPMD/ $LAMMPS_ROOT/src/
+$ cd $LAMMPS_ROOT/src/
+$ make yes-kspace
+$ make yes-extra-fix
+$ chmod 744 USER-DEEPMD/lmp_version.sh
+$ make yes-user-deepmd
+$ export LD_LIBRARY_PATH="$LD_LIBRARY_PATH":$tensorflow_root/python/
+$ export LD_LIBRARY_PATH="$LD_LIBRARY_PATH":$tensorflow_root/
+$ make serial -j 16
+
+
+=> lmp_serial is created !
+
+
+OPTIONAL: If Plumed want to be branched to the LAMMPS+DeepMD interface, follow the protocol:
+$ cd ../../
+$ git clone https://github.com/plumed/plumed2.git --branch v2.8 plumed-v2.8
+$ cd plumed-v2.8/
+$ ./configure --prefix=/scratch/celerse/plumed-v2.8/ --enable-mpi CC=mpicc FC=mpifort CXX=mpic++
+$ make -j 16
+$ make install
+$ PLUMED_ROOT=`pwd`
+$ export PATH=$PATH:/$PLUMED_ROOT/bin
+$ export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$PLUMED_ROOT/lib
+$ export PLUMED_KERNEL=$PLUMED_KERNEL:$PLUMED_ROOT
+$ cd ../lammps-stable_23Jun2022_update3/src/
+$ make lib-plumed args="-p $PLUMED_ROOT"
+$ make yes-plumed
+$ make serial -j 16
+
+
+=> lmp_serial can be used with PLUMED now ! (in MPI mode)
