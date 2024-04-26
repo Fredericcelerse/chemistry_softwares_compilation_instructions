@@ -15,7 +15,13 @@ conda activate dftb+
 conda install -c conda-forge gcc=8.5.0 gxx=8.5.0 cmake=3.26.1 blas 
 ```
 
-## Testing DFTB+ installation 
+> [!CAUTION]
+> If the libraries do not work during the compilations, you can load the corresponded modules available on the cluster:
+> ```
+> module load gcc openblas fftw intel-mkl cmake
+> ```
+
+## 2/ Compile the software 
 
 To test the dftb= installation, you can launch the following command contained within the test_installation.sh file:
 ```
