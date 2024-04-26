@@ -1,6 +1,6 @@
-### Plumed compilation from scratch
+### DFTB+ compilation from scratch
 
-You can install the DFTB+ software following the instructions contained in the DFTB+ file. 
+You can install the DFTB+ software following the instructions contained in the Compilation folder. 
 
 ### Testing DFTB+ installation 
 
