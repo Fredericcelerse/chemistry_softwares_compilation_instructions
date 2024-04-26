@@ -10,14 +10,19 @@ $ conda activate qml
 $ pip install scipy==1.4.1
 $ pip install ase==3.22.0
 $ pip install scikit-learn
+$ conda install -c conda-forge gcc gxx lapack blas libxcrypt libffi=3.2.1
+$ cp /home/celerse/anaconda3/envs/qml/include/crypt.h /home/celerse/anaconda3/envs/qml/include/python3.7m/
+$ export CPATH=/home/celerse/anaconda3/envs/qml/lib/
 
 # 3/ Load Intel libraries
-$ module load intel
-$ module load intel-oneapi-mkl
+$ #module load intel
+$ #module load intel-oneapi-mkl
 
 # 4/ Installing QML
-$ LDFLAGS="-L${MKLROOT}/lib/intel64" python setup.py build --compiler=intelem --fcompiler=intelem install
+$ #LDFLAGS="-L${MKLROOT}/lib/intel64" python setup.py build --compiler=intelem --fcompiler=intelem install
+$ LDFLAGS="-L/home/celerse/anaconda3/envs/qml/lib" python setup.py build install
 
 # 5/ Test
+$ cd
 $ python 
 $ import qml
