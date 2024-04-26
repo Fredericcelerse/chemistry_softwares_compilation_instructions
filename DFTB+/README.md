@@ -1,8 +1,10 @@
-### DFTB+ compilation from scratch
+# General comments
+
+## DFTB+ compilation from scratch
 
 You can install the DFTB+ software following the instructions contained in the Compilation folder. 
 
-### Testing DFTB+ installation 
+## Testing DFTB+ installation 
 
 To test the dftb= installation, you can launch the following command contained within the test_installation.sh file:
 ```
