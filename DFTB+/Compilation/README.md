@@ -23,10 +23,21 @@ conda install -c conda-forge gcc=8.5.0 gxx=8.5.0 cmake=3.26.1 blas
 
 ## 2/ Compile the software 
 
-To test the dftb= installation, you can launch the following command contained within the test_installation.sh file:
+### To enable modules such as D3 corrections or sockets, you can use the follwoing lines:
+$ sed -i 's/WITH_SDFTD3 "Whether the s-dftd3 library should be included" FALSE/WITH_SDFTD3 "Whether the s-dftd3 library should be included" TRUE/g' config.cmake
+$ sed -i 's/WITH_SOCKETS "Whether socket communication should be allowed for" FALSE/WITH_SOCKETS "Whether socket communication should be allowed for" TRUE/g' config.cmake
+> [!NOTE]
+> You can also directly change FALSE to TRUE in the config.cmake file by yourself !
+
+### To compile the software, let us do:
 ```
-export OMP_NUM_THREADS=1
-dftb+ dftb_in.hsd
+$ FC=gfortran CC=gcc cmake -DCMAKE_INSTALL_PREFIX=opt/dftb+ -B _build
+```
+```
+$ cmake --build _build -- -j 16
+```
+```
+$ cmake --install _build
 ```
 
 > [!CAUTION]
