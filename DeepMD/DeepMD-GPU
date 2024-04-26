@@ -2,12 +2,11 @@ Instructions for compiling the DeepMD software by yourself on a CPU platform: (T
 
 $ conda create -n deepmd-gpu python==3.10.8
 $ conda activate deepmd-gpu
-$ conda install -c anaconda cmake
+$ conda install -c conda-forge cmake=3.26.1
 $ conda install -c conda-forge gcc=8.5.0
 $ conda install -c conda-forge gxx=8.5.0
-$ conda install nvidia/label/cuda-11.6.2::cuda-toolkit
+$ conda install -c conda-forge cuda-toolkit=12.4.1
 $ conda install -c conda-forge cudnn=8.9.7.29
-$ #conda install nvidia::cuda-cudart-dev-12.4.127
 $ conda install defusco::mvapich2
 $ git clone https://github.com/deepmodeling/deepmd-kit.git deepmd-kit
 $ cd deepmd-kit && deepmd_source_dir=`pwd`
@@ -22,11 +21,8 @@ $ conda env config vars set CUDA_ROOT="/home/celerse/anaconda3/envs/deepmd-gpu/"
 $ conda deactivate
 $ conda activate deepmd-gpu
 $ pip install protobuf==3.20.*
-$ #ln -s /home/celerse/anaconda3/envs/test-deepmd-gpu/lib/librhash.so.1 /home/celerse/anaconda3/envs/test-deepmd-gpu/lib/librhash.so.0
 $ cmake -DTENSORFLOW_ROOT=$tensorflow_root -DCMAKE_INSTALL_PREFIX=$deepmd_root -DUSE_CUDA_TOOLKIT=TRUE -DCUDA_TOOLKIT_ROOT_DIR=$CUDA_HOME -DCMAKE_INSTALL_PREFIX=$deepmd_root/source/build/ -DUSE_TF_PYTHON_LIBS=TRUE ..
 
 $ export LD_LIBRARY_PATH=/home/celerse/anaconda3/envs/deepmd-gpu/lib/
 $ make -j4
 $ make install
-$ #ln -s $tensorflow/libtensorflow_cc.so.2 $tensorflow/libtensorflow_cc.so
-$ #ln -s $tensorflow/libtensorflow_framework.so.2 $tensorflow/libtensorflow_framework.so
