@@ -41,4 +41,8 @@ $ cmake --install _build
 ```
 
 > [!CAUTION]
-> Adjust the path of the "Prefix = ./dftb-3ob-3-1_files/" command in the dftb_in.hsd according to the path of the dftb-3ob-3-1_files/ folder in your machine !
+> Before launching any DFTB+ computation, enter the following command:
+> ```
+> export PATH=$PATH:/The/Path/where/dftb+/executable/is/
+> export LD_LIBRARY_PATH=/The/Path/where/anaconda/libs/are/
+> ```
