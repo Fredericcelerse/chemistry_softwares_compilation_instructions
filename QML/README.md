@@ -1,4 +1,4 @@
-### General comments
+# General comments
 
 ## QML installation from scratch
 
