@@ -80,7 +80,7 @@ make -j4
 make install
 ```
 
-[!WARNING]
+> [!WARNING]
 > Due to conda issues with cuda, you have to change manually several names of cuda libraries:
 > ```
 > cd /home/celerse/anaconda3/envs/lammps-deepmd-gpu/lib
