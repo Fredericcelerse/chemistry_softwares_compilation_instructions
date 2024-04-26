@@ -1,8 +1,19 @@
 # Compilation instructions
 
-## 1/ 
+## 1/ Download the software and create the conda environment
 
-You can install the DFTB+ software following the instructions contained in the DFTB+ file. 
+```
+git clone --branch release https://github.com/dftbplus/dftbplus.git
+cd dftbplus/
+```
+
+```
+conda create -n dftb+ python=3.10.8
+```
+```
+conda activate dftb+
+conda install -c conda-forge gcc=8.5.0 gxx=8.5.0 cmake=3.26.1 blas 
+```
 
 ## Testing DFTB+ installation 
 
