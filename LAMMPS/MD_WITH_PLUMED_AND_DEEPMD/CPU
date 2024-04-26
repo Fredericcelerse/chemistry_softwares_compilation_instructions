@@ -3,7 +3,7 @@ Instructions for installing LAMMPS with DeepMD by yourself on a CPU platform: (T
 1/ Download DeepMD and LAMMPS and create conda environment
 $ conda create -n lammps-deepmd-cpu python==3.10.8
 $ conda activate lammps-deepmd-cpu
-$ conda install -c anaconda cmake
+$ conda install -c conda-forge cmake=3.26.1
 $ conda install -c conda-forge gcc=8.5.0
 $ conda install -c conda-forge gxx=8.5.0
 $ conda install -c conda-forge mpi4py mpich
