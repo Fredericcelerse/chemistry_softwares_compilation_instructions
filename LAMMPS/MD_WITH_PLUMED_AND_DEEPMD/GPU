@@ -28,7 +28,7 @@ $ deepmd_root=`pwd`
 $ conda env config vars set CUDA_HOME="/home/celerse/anaconda3/envs/lammps-deepmd-gpu/"
 $ conda env config vars set CUDA_ROOT="/home/celerse/anaconda3/envs/lammps-deepmd-gpu/"
 $ conda deactivate
-$ conda activate deepmd-gpu
+$ conda activate lammps-deepmd-gpu
 $ pip install protobuf==3.20.*
 $ cmake -DTENSORFLOW_ROOT=$tensorflow_root -DCMAKE_INSTALL_PREFIX=$deepmd_root -DLAMMPS_SOURCE_ROOT=$LAMMPS_ROOT -DCMAKE_INSTALL_PREFIX=$deepmd_root/source/build/ -DUSE_TF_PYTHON_LIBS=TRUE .. 
 $ export LD_LIBRARY_PATH=/home/celerse/anaconda3/envs/lammps-deepmd-gpu/lib/
