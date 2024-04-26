@@ -1,6 +1,6 @@
 ## Folders
 
-### MD_LAMMPS_WITH_DEEPMD
+### MD_WITH_PLUMED_WITH_DEEPMD
 
 This folder contains the ingredients to compile LAMMPS with DeepMD and Plumed from the scratch and to test the installation
 
