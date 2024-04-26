@@ -50,6 +50,16 @@ $ make serial -j 16
 => lmp_serial is created !
 
 
+4/ Adjust libraries (due to cuda issues with conda ...)
+$ cd /home/celerse/anaconda3/envs/lammps-deepmd-gpu/lib
+$ ln -s libcudart.so.12 libcudart.so.11.0
+$ ln -s libcublas.so.12 libcublas.so.11
+$ ln -s libcublas.so.12 libcublas.so.11.0
+$ ln -s libcublasLt.so.12 libcublasLt.so.11
+$ ln -s libcufft.so.11 libcufft.so.10
+$ ln -s libcusparse.so.12 libcusparse.so.11
+
+
 OPTIONAL: If Plumed want to be branched to the LAMMPS+DeepMD interface, follow the protocol:
 $ cd ../../
 $ git clone https://github.com/plumed/plumed2.git --branch v2.8 plumed-v2.8
