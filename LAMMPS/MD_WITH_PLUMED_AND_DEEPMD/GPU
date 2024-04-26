@@ -61,7 +61,7 @@ $ ln -s libcusparse.so.12 libcusparse.so.11
 
 
 OPTIONAL: If Plumed want to be branched to the LAMMPS+DeepMD interface, follow the protocol:
-$ cd ../../
+$ cd 
 $ git clone https://github.com/plumed/plumed2.git --branch v2.8 plumed-v2.8
 $ cd plumed-v2.8/
 $ ./configure --prefix=/scratch/celerse/plumed-v2.8/
