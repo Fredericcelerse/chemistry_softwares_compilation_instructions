@@ -6,10 +6,9 @@ $ conda activate lammps-deepmd-gpu
 $ conda install -c conda-forge cmake=3.26.1
 $ conda install -c conda-forge gcc=8.5.0
 $ conda install -c conda-forge gxx=8.5.0
-$ conda install nvidia/label/cuda-11.6.2::cuda-toolkit
+$ conda install -c conda-forge cuda-toolkit=12.4.1
 $ conda install -c conda-forge cudnn=8.9.7.29
 $ conda install defusco::mvapich2
-$ conda install -c nvidia cuda-cudart-dev=11.6.55
 $ git clone https://github.com/deepmodeling/deepmd-kit.git deepmd-kit
 $ wget https://github.com/lammps/lammps/archive/stable_23Jun2022_update3.tar.gz
 $ tar xf stable_23Jun2022_update3.tar.gz
@@ -30,7 +29,7 @@ $ conda env config vars set CUDA_ROOT="/home/celerse/anaconda3/envs/lammps-deepm
 $ conda deactivate
 $ conda activate lammps-deepmd-gpu
 $ pip install protobuf==3.20.*
-$ cmake -DTENSORFLOW_ROOT=$tensorflow_root -DCMAKE_INSTALL_PREFIX=$deepmd_root -DLAMMPS_SOURCE_ROOT=$LAMMPS_ROOT -DCMAKE_INSTALL_PREFIX=$deepmd_root/source/build/ -DUSE_TF_PYTHON_LIBS=TRUE .. 
+$ cmake -DTENSORFLOW_ROOT=$tensorflow_root -DCMAKE_INSTALL_PREFIX=$deepmd_root -DUSE_CUDA_TOOLKIT=TRUE -DCUDA_TOOLKIT_ROOT_DIR=$CUDA_HOME -DLAMMPS_SOURCE_ROOT=$LAMMPS_ROOT -DCMAKE_INSTALL_PREFIX=$deepmd_root/source/build/ -DUSE_TF_PYTHON_LIBS=TRUE .. 
 $ export LD_LIBRARY_PATH=/home/celerse/anaconda3/envs/lammps-deepmd-gpu/lib/
 $ make -j4
 $ make install
@@ -55,7 +54,7 @@ OPTIONAL: If Plumed want to be branched to the LAMMPS+DeepMD interface, follow t
 $ cd ../../
 $ git clone https://github.com/plumed/plumed2.git --branch v2.8 plumed-v2.8
 $ cd plumed-v2.8/
-$ ./configure --prefix=/scratch/celerse/plumed-v2.8/ --enable-mpi CC=mpicc FC=mpifort CXX=mpic++
+$ ./configure --prefix=/scratch/celerse/plumed-v2.8/
 $ make -j 16
 $ make install
 $ PLUMED_ROOT=`pwd`
