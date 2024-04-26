@@ -1,6 +1,6 @@
 ### QML installation from scratch
 
-Installation protocol is available in the QML file
+Installation protocol is available in the Compilation folder
 
 ### QML test
 
