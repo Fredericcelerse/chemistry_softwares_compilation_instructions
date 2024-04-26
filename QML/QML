@@ -1,4 +1,4 @@
-Instructions for compiling the QML library (TESTED ON 24/04/2024 on the EPFL SCITAS cluster)
+Instructions for compiling the QML library (TESTED ON 26/04/2024 on the EPFL SCITAS cluster)
 
 # 1/ Downloading QML from GitHub
 $ git clone -b develop https://github.com/qmlcode/qml
