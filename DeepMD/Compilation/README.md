@@ -25,8 +25,8 @@ pip install tensorflow-cpu==2.8.0 protobuf==3.20.*
 > ```
 > ```
 > conda install defusco::mvapich2
-```
-```
+> ```
+> ```
 > and instead of using tensorflow-cpu, please use:
 > pip install tensorflow==2.8.0
 > ```
