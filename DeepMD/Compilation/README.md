@@ -3,8 +3,8 @@
 ## 1/ Download the software and create the conda environment
 
 ```
-git clone --branch release https://github.com/dftbplus/dftbplus.git
-cd dftbplus/
+git clone https://github.com/deepmodeling/deepmd-kit.git deepmd-kit
+cd deepmd-kit/
 ```
 
 ```
