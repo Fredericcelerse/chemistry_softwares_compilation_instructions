@@ -22,6 +22,8 @@ pip install tensorflow-cpu==2.8.0 protobuf==3.20.*
 > For GPU, also install the following libraries:
 > ```
 > conda install -c conda-forge cuda-toolkit=12.4.1 cudnn=8.9.7.29
+> ```
+> ```
 > conda install defusco::mvapich2
 ```
 ```
