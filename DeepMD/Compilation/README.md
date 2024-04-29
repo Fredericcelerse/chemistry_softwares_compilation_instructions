@@ -35,7 +35,7 @@ pip install tensorflow-cpu==2.8.0 protobuf==3.20.*
 
 ### FOR CPU:
 ```
-cd deepmd-kit && deepmd_source_dir=`pwd`
+deepmd_source_dir=`pwd`
 tensorflow_root=/home/celerse/anaconda3/envs/deepmd/lib/python3.10/site-packages/tensorflow/
 pip install .
 ```
@@ -56,7 +56,7 @@ make install
 
 ### FOR GPU:
 ```
-cd deepmd-kit && deepmd_source_dir=`pwd`
+deepmd_source_dir=`pwd`
 tensorflow_root=/home/celerse/anaconda3/envs/deepmd/lib/python3.10/site-packages/tensorflow/
 DP_VARIANT=cuda
 pip install .
