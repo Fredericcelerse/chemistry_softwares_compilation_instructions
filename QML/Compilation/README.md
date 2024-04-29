@@ -13,6 +13,8 @@ conda create -n qml python=3.7.4
 ```
 conda activate qml
 conda install -c conda-forge gcc gxx lapack blas libxcrypt libffi=3.2.1
+```
+```
 pip install scipy==1.4.1 ase==3.22.0 scikit-learn
 cp /home/celerse/anaconda3/envs/qml/include/crypt.h /home/celerse/anaconda3/envs/qml/include/python3.7m/
 export CPATH=/home/celerse/anaconda3/envs/qml/lib/
