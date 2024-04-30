@@ -19,7 +19,7 @@ pip install tensorflow-cpu==2.8.0 protobuf==3.20.*
 ```
 
 > [!IMPORTANT]
-> # For GPU, also install the following libraries:
+> ### For GPU, also install the following libraries:
 > ```
 > conda install -c conda-forge cuda-toolkit=12.4.1 cudnn=8.9.7.29
 > ```
@@ -30,7 +30,7 @@ pip install tensorflow-cpu==2.8.0 protobuf==3.20.*
 > ```
 > pip install tensorflow==2.8.0
 > ```
-> # For CPU, if you want to use MPI parallelization, you can install:
+> ### For CPU, if you want to use MPI parallelization, you can install:
 > ```
 > conda install -c conda-forge horovod
 > ```
